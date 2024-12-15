@@ -33,86 +33,88 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="w-[25%] bg-slate-800 shadow-md rounded-lg relative">
-      {/* Register Banner */}
-      <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-teal-500 w-36 py-2 rounded text-center">
-        <h1 className="font-semibold text-xl text-white">REGISTER</h1>
+    <>
+      <div className="w-[25%]">
+        <div className="w-full bg-slate-800 shadow-md rounded-lg relative">
+          <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-teal-500 w-36 py-2 rounded text-center">
+            <h1 className="font-semibold text-xl text-white">REGISTER</h1>
+          </div>
+
+          <div className="w-full flex justify-center items-center bg-slate-600 mb-10 h-28">
+            <div className="mt-20">
+              <PiUserCircleFill size={90} />
+            </div>
+          </div>
+
+          <form onSubmit={handleSubmit} className="flex flex-col items-center mt-8 px-6">
+            <div className="w-full flex items-center p-3 rounded border border-gray-500 bg-slate-700 mb-4">
+              <HiUser size={20} className="text-gray-400" />
+              <input
+                type="text"
+                placeholder="Name"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                required
+                className="bg-transparent text-white flex-1 ml-2 focus:outline-none"
+              />
+            </div>
+
+            <div className="w-full flex items-center p-3 rounded border border-gray-500 bg-slate-700 mb-4">
+              <HiUser size={20} className="text-gray-400" />
+              <input
+                type="date"
+                value={formData.dob}
+                onChange={(e) => setFormData({ ...formData, dob: e.target.value })}
+                required
+                className="bg-transparent text-white flex-1 ml-2 focus:outline-none"
+              />
+            </div>
+
+            <div className="w-full flex items-center p-3 rounded border border-gray-500 bg-slate-700 mb-4">
+              <HiUser size={20} className="text-gray-400" />
+              <input
+                type="email"
+                value={formData.email}
+                placeholder="Email"
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                required
+                className="bg-transparent text-white flex-1 ml-2 focus:outline-none"
+              />
+            </div>
+
+            <div className="w-full flex items-center p-3 rounded border border-gray-500 bg-slate-700 mb-4">
+              <BiSolidLock size={20} className="text-gray-400" />
+              <input
+                type="password"
+                value={formData.password}
+                placeholder="Password"
+                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                required
+                className="bg-transparent text-white flex-1 ml-2 focus:outline-none"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className={`w-full mb-10 py-2 rounded ${isFormValid ? "bg-teal-500 hover:bg-teal-600 text-white" : "bg-gray-500 text-gray-300 cursor-not-allowed"
+                }`}
+              disabled={!isFormValid}
+            >
+              Register
+            </button>
+          </form>
+        </div>
+        <p className="text-center text-gray-400 mb-4">
+          Already have an account?{" "}
+          <span
+            className="text-teal-500 cursor-pointer hover:underline"
+            onClick={() => navigate("/login")}
+          >
+            Login here
+          </span>
+        </p>
       </div>
-
-      {/* User Avatar */}
-      <div className="w-full flex justify-center items-center bg-slate-600 mb-10 h-28">
-        <div className="mt-20">
-          <PiUserCircleFill size={90} />
-        </div>
-      </div>
-
-      {/* Input Fields */}
-      <form onSubmit={handleSubmit} className="flex flex-col items-center mt-8 px-6">
-        {/* Name Field */}
-        <div className="w-full flex items-center p-3 rounded border border-gray-500 bg-slate-700 mb-4">
-          <HiUser size={20} className="text-gray-400" />
-          <input
-            type="text"
-            placeholder="Name"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            required
-            className="bg-transparent text-white flex-1 ml-2 focus:outline-none"
-          />
-        </div>
-
-        {/* Date of Birth Field */}
-        <div className="w-full flex items-center p-3 rounded border border-gray-500 bg-slate-700 mb-4">
-          <HiUser size={20} className="text-gray-400" />
-          <input
-            type="date"
-            value={formData.dob}
-            onChange={(e) => setFormData({ ...formData, dob: e.target.value })}
-            required
-            className="bg-transparent text-white flex-1 ml-2 focus:outline-none"
-          />
-        </div>
-
-        {/* Email Field */}
-        <div className="w-full flex items-center p-3 rounded border border-gray-500 bg-slate-700 mb-4">
-          <HiUser size={20} className="text-gray-400" />
-          <input
-            type="email"
-            value={formData.email}
-            placeholder="Email"
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            required
-            className="bg-transparent text-white flex-1 ml-2 focus:outline-none"
-          />
-        </div>
-
-        {/* Password Field */}
-        <div className="w-full flex items-center p-3 rounded border border-gray-500 bg-slate-700 mb-4">
-          <BiSolidLock size={20} className="text-gray-400" />
-          <input
-            type="password"
-            value={formData.password}
-            placeholder="Password"
-            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-            required
-            className="bg-transparent text-white flex-1 ml-2 focus:outline-none"
-          />
-        </div>
-
-        {/* Terms and Conditions */}
-        
-        {/* Register Button */}
-        <button
-          type="submit"
-          className={`w-full mb-10 py-2 rounded ${
-            isFormValid ? "bg-teal-500 hover:bg-teal-600 text-white" : "bg-gray-500 text-gray-300 cursor-not-allowed"
-          }`}
-          disabled={!isFormValid}
-        >
-          Register
-        </button>
-      </form>
-    </div>
+    </>
   );
 };
 
